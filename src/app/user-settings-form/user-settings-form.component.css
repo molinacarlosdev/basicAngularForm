@@ -1,0 +1,12 @@
+/* .ng-invalid:not(form).ng-touched {
+  border: 1px solid #ff2727;
+} */
+
+.field-error {
+  border: 1px solid #ffa81d;
+}
+
+.alert {
+  font-size: 1rem;
+  align-content: center;
+}

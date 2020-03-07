@@ -1,28 +1,35 @@
 <div class="container">
   <h2>User Settings</h2>
   <!-- ngNativeValidate will allow the browser to validate each control now -->
-  <form #form="ngForm" ngNativeValidate>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
-      <label for="name">Username</label>
+      <label for="name">Name</label>
       <input
         id="name"
-        name="username"
+        name="name"
         type="text"
         placeholder="Enter your name"
         class="form-control"
         required
-        minlength="3"
-        #propertyTest="ngModel"
         [(ngModel)]="userSettings.name"
+        #nameField="ngModel"
+        (blur)="onBlur(nameField)"
+        [class.field-error]="userForm.submitted && nameField.invalid"
       />
+      <div
+        [hidden]="!userForm.submitted || nameField.valid"
+        class="alert alert-danger"
+      >
+        Name is required.
+      </div>
     </div>
-    <h3>dirty: {{ propertyTest.dirty }}</h3>
+    <!-- <h3>dirty: {{ propertyTest.dirty }}</h3>
     <h3>pristine: {{ propertyTest.pristine }}</h3>
     <h3>touched: {{ propertyTest.touched }}</h3>
     <h3>untouched: {{ propertyTest.untouched }}</h3>
     <h3>valid: {{ propertyTest.valid }}</h3>
-    <h3>invalid: {{ propertyTest.invalid }}</h3>
-
+    <h3>invalid: {{ propertyTest.invalid }}</h3> -->
+    <!-- INVESTMENT AMOUNT FIELD -->
     <div class="form-group">
       <label for="investmentAmount">Investment Amount (25k > 500k)</label>
       <input
@@ -32,10 +39,18 @@
         placeholder="Enter your investment Amount"
         class="form-control"
         required
+        #investmentField="ngModel"
         [(ngModel)]="userSettings.investmentAmount"
-        min="25000"
+        [class.field-error]="userForm.submitted && investmentField.invalid"
+        min="5000"
         max="500000"
       />
+      <div
+        [hidden]="!userForm.submitted || investmentField.valid"
+        class="alert alert-danger"
+      >
+        Enter an investment amount between 5k and less than 500k.
+      </div>
     </div>
     <div class="form-check form-group">
       <input
@@ -119,8 +134,6 @@
         [(ngModel)]="userSettings.notes"
       ></textarea>
     </div>
-    <button class="btn btn-primary">Send</button>
+    <button class="btn btn-primary">Submit Profile</button>
   </form>
 </div>
-
-{{ form.value | json }}
