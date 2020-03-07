@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm, NgModel } from "@angular/forms";
 import { IUserSettings } from "../data/interface-user-settings";
+import { ServiceDataService } from "../data/service-data.service";
 @Component({
   selector: "app-user-settings-form",
   templateUrl: "./user-settings-form.component.html",
@@ -15,7 +16,7 @@ export class UserSettingsFormComponent implements OnInit {
     subscriptionType: null,
     notes: null
   };
-  constructor() {}
+  constructor(private dataService: ServiceDataService) {}
 
   ngOnInit() {}
 
@@ -23,6 +24,10 @@ export class UserSettingsFormComponent implements OnInit {
     console.log("in blur:", field.valid);
   }
   onSubmit(userForm: NgForm) {
-    console.log("in OnSubmit: ", userForm.errors);
+    console.log("in OnSubmit: ", userForm.valid);
+    this.dataService.postUserSettingsForm(this.userSettings).subscribe(
+      result => console.log("success: ", result),
+      error => console.log("error: ", error)
+    );
   }
 }
