@@ -9,7 +9,7 @@
         type="text"
         placeholder="Enter your name"
         class="form-control"
-        ngModel
+        [(ngModel)]="userSettings.name"
       />
     </div>
     <div class="form-check form-group">
@@ -19,7 +19,7 @@
         value=""
         id="emailOffers"
         name="emailOffers"
-        ngModel
+        [(ngModel)]="userSettings.emailOffers"
       />
       <label class="form-check-label" for="defaultCheck1">
         Email special offers
@@ -34,9 +34,9 @@
           type="radio"
           name="interfaceStyle"
           id="lightInterface"
-          value="light"
+          value="Light"
           checked
-          ngModel
+          [(ngModel)]="userSettings.interfaceStyle"
         />
         <label class="form-check-label" for="lightInterface">
           Light
@@ -48,7 +48,8 @@
           type="radio"
           name="interfaceStyle"
           id="mediumInterface"
-          value="mediem"
+          value="Medium"
+          [(ngModel)]="userSettings.interfaceStyle"
         />
         <label class="form-check-label" for="mediumInterface">
           Medium
@@ -60,8 +61,8 @@
           type="radio"
           name="interfaceStyle"
           id="darkInterface"
-          value="medium"
-          ngModel
+          value="Dark"
+          [(ngModel)]="userSettings.interfaceStyle"
         />
         <label class="form-check-label" for="darkInterface">
           Dark
@@ -75,7 +76,7 @@
         name="subscriptionType"
         class="form-control"
         id="subscriptionType"
-        ngModel
+        [(ngModel)]="userSettings.subscriptionType"
       >
         <option>Monthly</option>
         <option>Annual</option>
@@ -90,7 +91,7 @@
         name="notes"
         id="notes"
         rows="3"
-        ngModel
+        [(ngModel)]="userSettings.notes"
       ></textarea>
     </div>
     <button class="btn btn-primary">Send</button>
