@@ -7,11 +7,12 @@ import { IUserSettings } from "../data/interface-user-settings";
 })
 export class UserSettingsFormComponent implements OnInit {
   userSettings: IUserSettings = {
-    name: "Carlos",
-    emailOffers: true,
-    interfaceStyle: "Dark",
-    subscriptionType: "Annual",
-    notes: "here are some notes"
+    name: null,
+    investmentamount: null,
+    emailOffers: null,
+    interfaceStyle: null,
+    subscriptionType: null,
+    notes: null
   };
   constructor() {}
 
